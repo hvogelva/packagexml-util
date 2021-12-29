@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>PackageXMLUtil</title>
+    <meta name="description" content="">
+    <meta name="author" content="Hernán Vogel">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="manifest" href="favicon/site.webmanifest">
+
+    <!-- Bulma CSS Framework -->
+    <link rel="stylesheet" href="css/bulma/bulma.min.css">
+    <link rel="stylesheet" href="https://bulma.io/vendor/fontawesome-free-5.15.2-web/css/all.min.css">
+    <script type="text/javascript" src="js/main.js"></script>
+  </head>
+  <body>
+    <div class="tabs">
+      <ul>
+        <li class="is-active"><a>Package Merge</a></li>
+        <li><a href="converter.html">Excel Converter</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </div>
+    <section class="section">
+      <h1 class="title">Merge XML packages</h1>
+      <h2 class="subtitle">Merge multiple package.xml files into one</h2>
+    </section>
+    <div class="container">
+      <div class="field">
+        <div class="file is-normal is-boxed">
+          <label class="file-label">
+            <input class="file-input" type="file" name="inputXMLFiles" id="inputXMLFiles" accept=".xml" multiple>
+            <span class="file-cta">
+              <span class="file-icon">
+                <i class="fas fa-upload"></i>
+              </span>
+              <span class="file-label">
+                Choose files...
+              </span>
+            </span>
+          </label>
+        </div>
+      </div>
+      <div class="field is-grouped">
+        <div class="control">
+          <button class="button is-primary" onclick="mergePackages();">Merge Packages</button>
+        </div>
+        <div class="control">
+          <button class="button is-info" onclick="clearForm();">Clear</button>
+        </div>
+      </div>
+      <div class="field">
+        <textarea class="textarea is-info" placeholder="The result will appear here" name="outputXML" id="outputXML" rows="10" readonly></textarea>
+      </div>
+      <div class="field is-grouped">
+        <div class="control">
+          <button class="button is-info" onclick="copyToClipboard();">Copy to Clipboard</button>
+        </div>
+        <div class="control">
+          <button class="button is-link" onclick="download();">Download</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
