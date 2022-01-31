@@ -64,3 +64,21 @@ function clearForm() {
 	document.getElementById('inputXMLFiles').value = '';
 	document.getElementById('outputXML').value = '';
 }
+
+function clickConvertOption() {
+	let convertForm = document.getElementById('convertForm');
+	let selectedOption = convertForm.elements['convertOption'].value;
+
+	if (selectedOption == 'to') {
+		// To
+		convertForm.elements['inputFile'].accept = '.xml';
+	}
+	else {
+		// From
+		convertForm.elements['inputFile'].accept = '.xlsx';
+	}
+}
+
+function convertPackage() {
+	document.getElementById('convertForm').submit();
+}

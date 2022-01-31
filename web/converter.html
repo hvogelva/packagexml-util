@@ -25,5 +25,43 @@
         <li><a href="about.html">About</a></li>
       </ul>
     </div>
+    <section class="section">
+      <h1 class="title">Excel Converter</h1>
+      <h2 class="subtitle">Convert package.xml to/from Excel file</h2>
+    </section>
+    <form id="convertForm" name="convertForm" method="post" enctype="multipart/form-data" action="php/service/ExcelConverter.php">
+      <div class="container">
+        <div class="field">
+          <div class="control">
+            <label class="radio">
+              <input type="radio" name="convertOption" value="to" checked onclick="clickConvertOption();"> To XLSX
+            </label>
+            <label class="radio">
+              <input type="radio" name="convertOption" value="from" onclick="clickConvertOption();"> From XLSX
+            </label>
+          </div>
+        </div>
+        <div class="field">
+          <div class="file is-normal is-boxed">
+            <label class="file-label">
+              <input class="file-input" type="file" name="inputFile" id="inputFile" accept=".xml">
+              <span class="file-cta">
+                <span class="file-icon">
+                  <i class="fas fa-upload"></i>
+                </span>
+                <span class="file-label">
+                  Choose file...
+                </span>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="field">
+          <div class="control">
+            <button class="button is-primary" onclick="convertPackage();">Convert</button>
+          </div>
+        </div>
+      </div>
+  </form>
   </body>
 </html>

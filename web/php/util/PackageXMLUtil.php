@@ -1,5 +1,10 @@
 <?php
-class PackageXMLUtil {
+require '../../../vendor/autoload.php';
+
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+
+class PackageXMLUtil {	
 
 	private $metadataArr;
 	private $apiVersion;
@@ -40,7 +45,7 @@ class PackageXMLUtil {
 			}
 		}
 
-		//natcasesort($this->metadataArr);
+		ksort($this->metadataArr);
 	}
 
 	public function constructPackage() {
@@ -61,6 +66,35 @@ class PackageXMLUtil {
 
 			$xmlEl->addChild('version', $this->apiVersion . '.0');
 			return $xmlEl;
+		}
+
+		return null;
+	}
+
+	public function toExcel() {
+		if (!empty($this->metadataArr)) {
+			$spreadsheet = new Spreadsheet();
+			$sheet = $spreadsheet->getActiveSheet();
+			$sheet->setCellValue('A1', 'Api Name');
+			$sheet->setCellValue('B1', 'Metadata Type');
+			$sheet->getStyle('A1')->getFont()->setBold(true);
+			$sheet->getStyle('B1')->getFont()->setBold(true);
+
+			$rowNumber = 2;
+
+			foreach ($this->metadataArr as $typeName => $members) {
+				foreach($members as $memberName) {
+					$sheet->setCellValue('A' . $rowNumber, $memberName);
+					$sheet->setCellValue('B' . $rowNumber, $typeName);
+					$rowNumber++;
+				}
+			}
+
+			foreach ($sheet->getColumnIterator() as $column) {
+				$sheet->getColumnDimension($column->getColumnIndex())->setAutoSize(true);
+			}
+
+			return new Xlsx($spreadsheet);
 		}
 
 		return null;
