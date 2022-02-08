@@ -100,5 +100,29 @@ class PackageXMLUtil {
 		return null;
 	}
 
+	public function fromExcel($inputFileName) {
+		$spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($inputFileName);
+		$sheet = $spreadsheet->getActiveSheet();
+
+		if ($this->apiVersion == 0) {
+			$this->apiVersion = 53;
+		}
+		
+		for ($rowNumber = 2; $rowNumber <= $sheet->getHighestRow(); $rowNumber++) {
+			$apiName = '' . $sheet->getCell('A' . $rowNumber);
+			$metadataType = '' . $sheet->getCell('B' . $rowNumber);
+
+			if (!isset($this->metadataArr[$metadataType])) {
+				$this->metadataArr[$metadataType] = array();
+			}
+
+			if (!in_array($apiName, $this->metadataArr[$metadataType])) {
+				array_push($this->metadataArr[$metadataType], $apiName);
+			}
+		}
+
+		return $this->constructPackage();
+	}
+
 }
 ?>
