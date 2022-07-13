@@ -14,6 +14,16 @@ class PackageXMLUtil {
 		$this->apiVersion = 0;
 	}
 
+	// Used by PackageXMLGenerator.php
+	public function setMetadataArray($metadataArr) {
+		$this->metadataArr = $metadataArr;
+	}
+
+	// Used by PackageXMLGenerator.php
+	public function setApiVersion($apiVersion) {
+		$this->apiVersion = $apiVersion;
+	}
+
 	public function addPackage($packageXML) {
 		// Iterates <types>
 		foreach ($packageXML->types as $type) {
