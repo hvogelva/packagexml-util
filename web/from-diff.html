@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>PackageXMLUtil</title>
+    <meta name="description" content="">
+    <meta name="author" content="Hernán Vogel">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="manifest" href="favicon/site.webmanifest">
+
+    <!-- Bulma CSS Framework -->
+    <link rel="stylesheet" href="css/bulma/bulma.min.css">
+    <link rel="stylesheet" href="https://bulma.io/vendor/fontawesome-free-5.15.2-web/css/all.min.css">
+    <script type="text/javascript" src="js/main.js"></script>
+    <style>.section { padding-top: 0; }</style>
+  </head>
+  <body>
+    <div class="tabs">
+      <ul>
+        <li><a href=".">Package Merge</a></li>
+        <li><a href="converter.html">Excel Converter</a></li>
+        <li class="is-active"><a>Generate From Diff</a></li>
+        <li><a href="about.html">About</a></li>
+        <li>
+          <a href="https://github.com/hvogelva/packagexml-util">
+            <span class="icon">
+              <i class="fab fa-github"></i>
+            </span>
+            <span>View in GitHub</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <section class="section">
+      <h1 class="title">Generate From Diff</h1>
+      <h2 class="subtitle">
+        Copy and paste your git diff or status text. For example, copy the output of '<i>git diff --name-status develop..feature_branch</i>'
+        down here and generate the package. Not all metadata lines are supported yet but at least it does the main job. 
+        <a href="#">See this picture if help is needed.</a>
+      </h2>
+      <div class="container">
+        <div class="columns">
+          <div class="column">
+            <div class="field">
+              <label class="label">Root folder</label>
+              <div class="control">
+                <input class="input" type="text" value="force-app/main/default/">
+              </div>
+            </div>
+            <div class="field is-grouped">
+              <div class="control">
+                <label class="checkbox">
+                  <input type="checkbox" checked> Show unsupported values
+                </label>
+              </div>
+              <div class="control">
+                <label class="checkbox">
+                  <input type="checkbox"> Show ignored lines
+                </label>
+              </div>
+            </div>
+            <div class="field">
+              <button class="button is-info is-small is-rounded">Reset Settings</button>
+            </div>
+          </div>
+          <div class="column"></div>
+        </div>
+        <div class="columns">
+          <div class="column">
+            <div class="field has-text-centered">
+              <span class="icon-text">
+                <span class="icon">
+                  <i class="fas fa-code"></i>
+                </span>
+                <span>Diff text</span>
+              </span>
+            </div>
+            <div class="field">
+              <textarea class="textarea is-info" wrap="off" placeholder="Paste your git diff/status here" rows="12"></textarea>
+            </div>
+            <div class="field is-grouped">
+              <div class="control">
+                <button class="button is-primary">Generate Package</button>
+              </div>
+              <div class="control">
+                <button class="button is-info">Clear</button>
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="field has-text-centered">
+              <span class="icon-text">
+                <span class="icon">
+                  <i class="fas fa-code"></i>
+                </span>
+                <span>Resulting package</span>
+              </span>
+            </div>
+            <div class="field">
+              <textarea class="textarea is-info" wrap="off" placeholder="The result will appear here" rows="12" readonly></textarea>
+            </div>
+            <div class="field is-grouped">
+              <div class="control">
+                <button class="button is-info">Copy to Clipboard</button>
+              </div>
+              <div class="control">
+                <button class="button is-link">Download</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
