@@ -14,10 +14,31 @@ class PackageXMLGenerator {
 	}
 
 	public function generatePackage($diffStr, $options) {
-		// Magic, eh eh eh
+		$this->process($diffStr, $options['rootPath']);
+
+		if (!empty($this->metadataArr)) {
+			if (isset($this->metadataArr['Unsupported'])) {
+				// Removes 'Unsupported' from the array, but stores it in a var
+				$unsupportedArr = $this->metadataArr['Unsupported'];
+				unset($this->metadataArr['Unsupported']);
+
+				// If showSupported, adds it again (but at the end)
+				if ($options['showSupported']) {
+					$this->metadataArr['Unsupported'] = $unsupportedArr;
+				}
+			}
+		}
 	}
 
-	public function process($diffStr, $rootPath) {
+	public function getMetadataArray() {
+		return $this->metadataArr;
+	}
+
+	public function getIgnoredLines() {
+		return $this->ignoredLines;
+	}
+
+	private function process($diffStr, $rootPath) {
 		$config = PackageXMLGenConfig::getConfig();
 
 		if ($rootPath == null) {

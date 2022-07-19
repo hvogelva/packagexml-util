@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="css/bulma/bulma.min.css">
     <link rel="stylesheet" href="https://bulma.io/vendor/fontawesome-free-5.15.2-web/css/all.min.css">
     <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/from-diff.js"></script>
     <style>.section { padding-top: 0; }</style>
   </head>
   <body>
@@ -42,32 +43,34 @@
         down here and generate the package. Not all metadata lines are supported yet but at least it does the main job. 
         <a href="#">See this picture if help is needed.</a>
       </h2>
-      <div class="container">
-        <div class="columns">
-          <div class="column">
-            <div class="field">
-              <label class="label">Root folder</label>
-              <div class="control">
-                <input class="input" type="text" value="force-app/main/default/">
+      <form id="generateForm" name="generateForm" onsubmit="generatePackage();">
+        <div class="container">
+          <div class="columns">
+            <div class="column">
+              <div class="field">
+                <label class="label">Root folder</label>
+                <div class="control">
+                  <input class="input" type="text" value="force-app/main/default/" name="rootPath" id="rootPath">
+                </div>
+              </div>
+              <div class="field is-grouped">
+                <div class="control">
+                  <label class="checkbox">
+                    <input type="checkbox" checked name="showSupported" id="showSupported"> Show unsupported values
+                  </label>
+                </div>
+                <div class="control">
+                  <label class="checkbox">
+                    <input type="checkbox" name="showIgnored" id="showIgnored"> Show ignored lines
+                  </label>
+                </div>
+              </div>
+              <div class="field">
+                <button class="button is-info is-small is-rounded" onclick="resetSettings();">Reset Settings</button>
               </div>
             </div>
-            <div class="field is-grouped">
-              <div class="control">
-                <label class="checkbox">
-                  <input type="checkbox" checked> Show unsupported values
-                </label>
-              </div>
-              <div class="control">
-                <label class="checkbox">
-                  <input type="checkbox"> Show ignored lines
-                </label>
-              </div>
-            </div>
-            <div class="field">
-              <button class="button is-info is-small is-rounded">Reset Settings</button>
-            </div>
+            <div class="column"></div>
           </div>
-          <div class="column"></div>
         </div>
         <div class="columns">
           <div class="column">
@@ -80,14 +83,15 @@
               </span>
             </div>
             <div class="field">
-              <textarea class="textarea is-info" wrap="off" placeholder="Paste your git diff/status here" rows="12"></textarea>
+              <textarea class="textarea is-info" wrap="off" placeholder="Paste your git diff/status here" rows="12"
+                name="diffText" id="diffText"></textarea>
             </div>
             <div class="field is-grouped">
               <div class="control">
-                <button class="button is-primary">Generate Package</button>
+                <button class="button is-primary" type="submit">Generate Package</button>
               </div>
               <div class="control">
-                <button class="button is-info">Clear</button>
+                <button class="button is-info" onclick="clearText();">Clear</button>
               </div>
             </div>
           </div>
@@ -101,19 +105,20 @@
               </span>
             </div>
             <div class="field">
-              <textarea class="textarea is-info" wrap="off" placeholder="The result will appear here" rows="12" readonly></textarea>
+              <textarea class="textarea is-info" wrap="off" placeholder="The result will appear here" rows="12" readonly
+                name="outputXML" id="outputXML"></textarea>
             </div>
             <div class="field is-grouped">
               <div class="control">
-                <button class="button is-info">Copy to Clipboard</button>
+                <button class="button is-info" onclick="copyToClipboard();">Copy to Clipboard</button>
               </div>
               <div class="control">
-                <button class="button is-link">Download</button>
+                <button class="button is-link" onclick="download();">Download</button>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </form>
     </section>
   </body>
 </html>
