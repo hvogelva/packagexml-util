@@ -14,7 +14,15 @@ class CustomObject implements ParserInterface {
 					case 'fields':
 						return 'CustomField';
 						break;
+					case 'recordTypes':
+						return 'RecordType';
+						break;
+					case 'validationRules':
+						return 'ValidationRule';
+						break;
 				}
+			} else if (count($explodeArr) < 3 && str_ends_with($metadataStr, '/')) {
+				return 'CustomObject';
 			}
 		}
 
@@ -27,6 +35,8 @@ class CustomObject implements ParserInterface {
 
 			if (count($explodeArr) == 3) {
 				return $explodeArr[0] . '.' . explode('.', $explodeArr[2], 2)[0];
+			} else if (count($explodeArr) < 3 && str_ends_with($metadataStr, '/')) {
+				return $explodeArr[0];
 			}
 		}
 		

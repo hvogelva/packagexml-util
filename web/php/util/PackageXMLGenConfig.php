@@ -1,7 +1,7 @@
 <?php
 require 'parsers/ParserInterface.php';
 
-foreach (glob('parsers/*.parser.php') as $classFile) {
+foreach (glob(__DIR__ . '/parsers/*.parser.php') as $classFile) {
     include $classFile;
 }
 
@@ -12,8 +12,9 @@ class PackageXMLGenConfig {
 		$configArr = array(
 			'applications' => array('TypeName' => 'CustomApplication'),
 			'classes' => array('TypeName' => 'ApexClass'),
-			'customMetadata' => array('TypeName' => 'CustomMetadata'),
 			'customPermissions' => array('TypeName' => 'CustomPermission'),
+			'email' => array('TypeName' => 'EmailTemplate'),
+			'flexipages' => array('TypeName' => 'FlexiPage'),
 			'flows' => array('TypeName' => 'Flow'),
 			'globalValueSets' => array('TypeName' => 'GlobalValueSet'),
 			'layouts' => array('TypeName' => 'Layout'),
